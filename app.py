@@ -28,7 +28,15 @@ def hello_world():
     havells_android_reviews_copy = havells_android_reviews
     havells_android_reviews_copy = havells_android_reviews.drop(columns= ['reviewId', 'userName','userImage', 'thumbsUpCount', 'reviewCreatedVersion', 'at', 'replyContent', 'repliedAt'], axis = 1).head(500)
 
-    content_array = np.array(havells_android_reviews_copy['content'])
+    content_array = np.array(havells_android_reviews_copy['content']).tolist()
+    reviewId_array = np.array(havells_android_reviews['reviewId']).tolist()
+    userName_array = np.array(havells_android_reviews['userName']).tolist()
+    userImage_array = np.array(havells_android_reviews['userImage']).tolist()
+    thumbsUpCount_array = np.array(havells_android_reviews['thumbsUpCount']).tolist()
+    reviewCreatedVersion_array = np.array(havells_android_reviews['reviewCreatedVersion']).tolist()
+    at_array = np.array(havells_android_reviews['at']).tolist()
+    replyContent_array = np.array(havells_android_reviews['replyContent']).tolist()
+    repliedAt_array = np.array(havells_android_reviews['repliedAt']).tolist()
 
     final_words = []
     for i in content_array:
@@ -199,7 +207,16 @@ def hello_world():
           'iot_score' : iot_score,
           'solar_score' : solar_score,
           'rating_array' : rating_array,
-          'latest_comment' : content_array[0]
+          'latest_comment' : content_array[0],
+          'content_array' : content_array,
+          'review_id' : reviewId_array,
+          'user_name' : userName_array,
+          'user_image' : userImage_array,
+          'thumbs_up_count' : thumbsUpCount_array,
+          'review_created_version' : reviewCreatedVersion_array,
+          'at' : at_array,
+          'reply_content' : replyContent_array,
+          'replied_at' : repliedAt_array
         }
 
     return jsonify(data_4)
