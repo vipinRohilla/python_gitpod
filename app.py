@@ -4,8 +4,8 @@ from google_play_scraper import Sort, reviews_all
 import pandas as pd
 import numpy as np
 import string
-import os
 from flask import Flask, jsonify
+from firebase import firebase
 
 app = Flask(__name__)
 
@@ -234,6 +234,9 @@ def getGooglePlayStoreHavellsSyncAppReviews():
           'reply_content' : replyContent_array,
           'replied_at' : repliedAt_array
         }
+
+    fb = firebase.FirebaseApplication('https://application-reviews-4d3ec-default-rtdb.firebaseio.com/', None)
+    result = fb.put('https://application-reviews-4d3ec-default-rtdb.firebaseio.com/review','-N4l4jVRo6yKNVIZm8Q-' ,data_4)
 
     return jsonify(data_4)
 
